@@ -6,6 +6,7 @@ board = Board()
 class Result:
     def __init__(self, estimate = 0, position = ""):
         self.estimate = estimate
+        self.position = position
 
 
 class MiniMax:
@@ -79,5 +80,5 @@ with open(input) as f:
     initial_pos = f.readline()
     p = MiniMax(list(initial_pos),depth,1)
     f = open(output, "w")
-    f.write(str(p.estimate)+"\n"+"".join(p.position)+"\n"+str(p.totalLeaves))
+    f.write("Board Position: "+"".join(p.position)+"\n"+"Positions evaluated by static estimation: "+str(p.totalLeaves)+".\n"+"MINIMAX ESTIMATE: "+str(p.estimate)+".")
     f.close()
