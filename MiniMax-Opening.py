@@ -4,7 +4,7 @@ from sys import maxsize
 board = Board()
 
 class Result:
-    def __init__(self, estimate = 0, position = ""):
+    def __init__(self, estimate = 0):
         self.estimate = estimate
 
 
@@ -38,7 +38,7 @@ class MiniMax:
 
         if(minmax == 1):
             movelist = board.generateOpening(position[:])
-            ans = Result(-1*maxsize, "")
+            ans = Result(-1*maxsize)
             for position in movelist:
                 tempSol = self.miniMaxEstimate(position[:], depth-1, 0)
                 if(tempSol.estimate > ans.estimate):
@@ -48,7 +48,7 @@ class MiniMax:
             return ans
         else:
             movelist = board.generateOpeningBlack(position[:])
-            ans = Result(maxsize, "")
+            ans = Result(maxsize)
             for position in movelist:
                 tempSol = self.miniMaxEstimate(position[:], depth-1, 1)
                 if(tempSol.estimate < ans.estimate):

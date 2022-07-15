@@ -1,0 +1,72 @@
+MinimaxOpening
+Board Position: xxxxxxxxxWWWxxBxxBxxW
+Positions evaluated by static estimation: 52864.
+MINIMAX ESTIMATE: 1.
+
+ABOpening
+Board Position: xxxxxxxxxWWWxxBxxBxxW
+Positions evaluated by static estimation: 2168.
+MINIMAX ESTIMATE: 1.
+
+MinimaxOpening
+Board Position: Wxxxxxxxxxxxxxxxxxxxx
+Positions evaluated by static estimation: 143640.
+MINIMAX ESTIMATE: 0.
+
+ABOpening
+Board Position: Wxxxxxxxxxxxxxxxxxxxx
+Positions evaluated by static estimation: 758.
+MINIMAX ESTIMATE: 0.
+
+
+MinimaxOpeningBlack
+Board Position: Bxxxxxxxxxxxxxxxxxxxx
+Positions evaluated by static estimation: 143640.
+MINIMAX ESTIMATE: 0.
+
+
+MinimaxOpeningBlack
+Board Position: xxxxxxxxxBBBxxWxxWxxB
+Positions evaluated by static estimation: 52864.
+MINIMAX ESTIMATE: 1.
+
+MinimaxGame
+Board Position: xxWWBBxWBxWBxxxWxxxxx
+Positions evaluated by static estimation: 5814.
+MINIMAX ESTIMATE: 994.
+
+ABGame
+Board Position: xxWWBBxWBxWBxxxWxxxxx
+Positions evaluated by static estimation: 600.
+MINIMAX ESTIMATE: 994.
+
+MinimaxGame
+Board Position: BBBBxWxxWxxxxxxxxxxxx
+Positions evaluated by static estimation: 404.
+MINIMAX ESTIMATE: -10000.
+
+
+ABGame
+Board Position: BBBBxWxxWxxxxxxxxxxxx
+Positions evaluated by static estimation: 53.
+MINIMAX ESTIMATE: -10000.
+
+MinimaxGameBlack
+Board Position: xxBBWWxBWxBWxxxBxxxxx
+Positions evaluated by static estimation: 5814.
+MINIMAX ESTIMATE: 994.
+
+MinimaxGameBlack
+Board Position: WWWWxBxxBxxxxxxxxxxxx
+Positions evaluated by static estimation: 404.
+MINIMAX ESTIMATE: -10000.
+
+MinimaxOpeningImproved
+Board Position: xxxxxxxxxWWWxxBxxBxxW
+Positions evaluated by static estimation: 52864.
+MINIMAX ESTIMATE: 31.
+
+MinimaxGameImproved
+Board Position: xWWWBBWxxxxxxxxxxxxxx
+Positions evaluated by static estimation: 400.
+MINIMAX ESTIMATE: 10000.

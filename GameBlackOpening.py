@@ -13,7 +13,7 @@ class MiniMax:
         self.totalLeaves = 0
         self.depth = depth
         self.position = ""
-        self.estimate = self.miniMaxEstimate(list(start),self.depth,move).estimate
+        self.estimate = self.miniMaxEstimate(list(start),self.depth,move, Result(-1*maxsize), Result(maxsize)).estimate
 
     def countItems(self, board):
         white = 0
@@ -25,43 +25,64 @@ class MiniMax:
                 black+=1
         return [white, black]
 
+    def updatedStaticPtrs(self, position):
+        currentMills = 0
+        futureMills = 0
+        for currPos in range(len(position)):
+            if(position[currPos] == "B"):
+               if(board.closeMill(currPos, position)):
+                   currentMills+=1
+        for currPos in range(len(position)):
+            if(position[currPos] == "x"):
+               copy = position[:]
+               copy[currPos] = "B"
+               if(board.closeMill(currPos, copy)):
+                   futureMills+=1
+        return 10*currentMills+5*futureMills
+
     def staticEstimation(self, position):
         self.totalLeaves+=1
         white, black = self.countItems(position)
-        L = board.generateMidgameEndgameBlack(position[:])
+        L = board.generateMidgameEndgame(position[:])
         numBlack = len(L)
-        if(black <= 2):
+        if(white <= 2):
             return 10000
-        elif(white <= 2):
+        elif(black <= 2):
             return -10000
         elif(numBlack == 0):
             return 10000
         else: 
-            return (1000*(white-black))-numBlack
+            return (1000*(black-white))-numBlack+self.updatedStaticPtrs(position)
 
-    def miniMaxEstimate(self, position, depth, minmax):
+    def miniMaxEstimate(self, position, depth, minmax, alpha, beta):
         if(depth == 0):
            estimates = self.staticEstimation(position)
            result = Result(estimates)
            return result
 
         if(minmax == 1):
-            movelist = board.generateMidgameEndgame(position[:])
+            movelist = board.generateOpeningBlack(position[:])
             ans = Result(-1*maxsize)
             for position in movelist:
-                tempSol = self.miniMaxEstimate(position[:], depth-1, 0)
+                tempSol = self.miniMaxEstimate(position[:], depth-1, 0, alpha, beta)
                 if(tempSol.estimate > ans.estimate):
                     ans = tempSol
                     if(depth == self.depth):
                         self.position = position
+                alpha = ans if(ans.estimate > alpha.estimate) else alpha
+                if(beta.estimate <= alpha.estimate):
+                    break
             return ans
         else:
-            movelist = board.generateMidgameEndgameBlack(position[:])
+            movelist = board.generateOpening(position[:])
             ans = Result(maxsize)
             for position in movelist:
-                tempSol = self.miniMaxEstimate(position[:], depth-1, 1)
+                tempSol = self.miniMaxEstimate(position[:], depth-1, 1, alpha, beta)
                 if(tempSol.estimate < ans.estimate):
                     ans = tempSol
+                beta = ans if(ans.estimate < beta.estimate) else beta
+                if(beta.estimate <= alpha.estimate):
+                    break
             return ans
 
 input_content = input()

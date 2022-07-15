@@ -4,7 +4,7 @@ from sys import maxsize
 board = Board()
 
 class Result:
-    def __init__(self, estimate = 0, position = ""):
+    def __init__(self, estimate = 0):
         self.estimate = estimate
 
 
@@ -13,7 +13,7 @@ class MiniMax:
         self.totalLeaves = 0
         self.depth = depth
         self.position = ""
-        self.estimate = self.miniMaxEstimate(list(start),self.depth,move,Result(-1*maxsize, ""), Result(maxsize, "")).estimate
+        self.estimate = self.miniMaxEstimate(list(start),self.depth,move,Result(-1*maxsize), Result(maxsize)).estimate
 
     def countItems(self, board):
         white = 0
@@ -47,7 +47,7 @@ class MiniMax:
 
         if(minmax == 1):
             movelist = board.generateMidgameEndgame(position[:])
-            ans = Result(-1*maxsize, "")
+            ans = Result(-1*maxsize)
             for position in movelist:
                 tempSol = self.miniMaxEstimate(position[:], depth-1, 0, alpha, beta)
                 if(tempSol.estimate > ans.estimate):
@@ -60,7 +60,7 @@ class MiniMax:
             return ans
         else:
             movelist = board.generateMidgameEndgameBlack(position[:])
-            ans = Result(maxsize, "")
+            ans = Result(maxsize)
             for position in movelist:
                 tempSol = self.miniMaxEstimate(position[:], depth-1, 1, alpha, beta)
                 if(tempSol.estimate < ans.estimate):

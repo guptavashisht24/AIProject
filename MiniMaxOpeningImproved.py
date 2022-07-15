@@ -4,9 +4,8 @@ from sys import maxsize
 board = Board()
 
 class Result:
-    def __init__(self, estimate = 0, position = ""):
+    def __init__(self, estimate = 0):
         self.estimate = estimate
-        self.position = position
 
 
 class MiniMax:
@@ -56,7 +55,7 @@ class MiniMax:
 
         if(minmax == 1):
             movelist = board.generateOpening(position[:])
-            ans = Result(-1*maxsize, "")
+            ans = Result(-1*maxsize)
             for position in movelist:
                 tempSol = self.miniMaxEstimate(position[:], depth-1, 0)
                 if(tempSol.estimate > ans.estimate):
@@ -66,7 +65,7 @@ class MiniMax:
             return ans
         else:
             movelist = board.generateOpeningBlack(position[:])
-            ans = Result(maxsize, "")
+            ans = Result(maxsize)
             for position in movelist:
                 tempSol = self.miniMaxEstimate(position[:], depth-1, 1)
                 if(tempSol.estimate < ans.estimate):
@@ -82,3 +81,5 @@ with open(input) as f:
     f = open(output, "w")
     f.write("Board Position: "+"".join(p.position)+"\n"+"Positions evaluated by static estimation: "+str(p.totalLeaves)+".\n"+"MINIMAX ESTIMATE: "+str(p.estimate)+".")
     f.close()
+
+#DO NOT COPY
